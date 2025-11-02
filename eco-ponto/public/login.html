@@ -1,4 +1,21 @@
-<script type="module">
-  import { loadNavbar } from "./js/navbar.js";
-  loadNavbar();
-</script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>EcoPontos - Login</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Entrar</h2>
+    <form id="loginForm">
+      <input type="email" id="emailLogin" placeholder="E-mail" required>
+      <input type="password" id="senhaLogin" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Ainda não tem conta? <a href="register.html">Cadastre-se</a></p>
+  </div>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>
