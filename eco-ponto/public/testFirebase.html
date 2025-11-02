@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste Firebase</title>
+</head>
+<body>
+  <h1>Teste de Conexão Firebase</h1>
+  <div id="status">Testando...</div>
+
+  <script type="module">
+    import { app } from "./js/firebaseConfig.js";
+    document.getElementById("status").innerText =
+      app ? "✅ Firebase conectado com sucesso!" : "❌ Erro ao conectar Firebase.";
+  </script>
+</body>
+</html>
