@@ -1,4 +1,43 @@
-<script type="module">
-  import { loadNavbar } from "./js/navbar.js";
-  loadNavbar();
-</script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoPontos - Perfil</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <main class="profile-container">
+    <section class="profile-header">
+      <h1 id="userName">Carregando...</h1>
+      <p>Sua pontuação atual:</p>
+      <div class="points-display">
+        <span id="userPoints">0</span> pontos
+      </div>
+      <button id="addPointsBtn" class="btn btn-green">Registrar reciclagem</button>
+    </section>
+
+    <section class="history-section">
+      <h2>Histórico de Reciclagens</h2>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Pontos</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <!-- preenchido via JS -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module" src="./js/navbar.js"></script>
+  <script type="module" src="./js/points.js"></script>
+
+</body>
+</html>
