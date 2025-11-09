@@ -1,16 +1,37 @@
 // /js/navbar.js
-export function loadNavbar() {
-  const navbar = `
+// Navbar injetada automaticamente ao importar o módulo.
+
+export function getNavbarHtml() {
+  return `
     <nav class="navbar">
-      <div class="nav-logo">🌱 EcoPontos</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="info.html">Reciclagem</a></li>
-        <li><a href="map.html">Mapa</a></li>
-        <li><a href="profile.html" class="user-icon">👤 Perfil</a></li>
-      </ul>
+      <div class="nav-inner">
+        <div class="nav-left">
+          <a class="nav-logo" href="index.html">🌱 <span>EcoPontos</span></a>
+        </div>
+        <div class="nav-right">
+          <a class="nav-link" href="index.html">Início</a>
+          <a class="nav-link" href="info.html">Reciclagem</a>
+          <a class="nav-link" href="map.html">Mapa</a>
+          <a class="nav-link user-link" href="profile.html" title="Perfil">👤</a>
+        </div>
+      </div>
     </nav>
   `;
-
-  document.body.insertAdjacentHTML("afterbegin", navbar);
 }
+
+// injeta imediatamente quando o arquivo for carregado como módulo
+(function injectNavbar() {
+  try {
+    // evita duplicar caso já exista
+    if (!document.querySelector(".navbar")) {
+      document.body.insertAdjacentHTML("afterbegin", getNavbarHtml());
+    }
+  } catch (err) {
+    // se o DOM ainda não estiver pronto, aguarda carregar
+    window.addEventListener("DOMContentLoaded", () => {
+      if (!document.querySelector(".navbar")) {
+        document.body.insertAdjacentHTML("afterbegin", getNavbarHtml());
+      }
+    });
+  }
+})();
