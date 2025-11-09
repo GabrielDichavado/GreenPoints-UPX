@@ -1,0 +1,89 @@
+/* /css/style.css */
+/* Fonte Montserrat via link no HTML */
+:root{
+  --green-600: #007f5f;
+  --green-700: #005f43;
+  --bg: #f6fbf8;
+  --card: #ffffff;
+  --muted: #6b6b6b;
+  --accent: #e9f7ef;
+  --shadow: rgba(0,0,0,0.06);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* NAVBAR */
+.navbar{
+  width:100%;
+  background: linear-gradient(90deg, rgba(0,127,95,0.95), rgba(0,127,95,0.9));
+  color:white;
+  padding:12px 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
+.nav-logo{font-weight:700;display:flex;align-items:center;gap:8px;color:white;text-decoration:none}
+.nav-logo span{font-size:1.05rem}
+.nav-right{display:flex;gap:14px;align-items:center}
+.nav-link{color:white;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+.nav-link:hover{background:rgba(255,255,255,0.08)}
+
+/* Page content wrapper */
+.page-content{max-width:1100px;margin:28px auto;padding:0 20px}
+
+/* HERO sections */
+.map-hero, .info-hero{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 8px 24px var(--shadow);margin-bottom:18px}
+.map-hero h1, .info-hero h1{margin:0 0 8px;font-size:1.6rem}
+.map-hero p, .info-hero p{margin:0;color:var(--muted)}
+
+/* BUTTONS */
+.btn{
+  display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:none;background:var(--green-600);color:white;font-weight:600;cursor:pointer;
+}
+.btn:hover{background:var(--green-700)}
+.btn-sec{background:transparent;color:var(--green-700);border:2px solid var(--green-600)}
+.btn-small{padding:6px 8px;border-radius:8px;font-size:0.9rem}
+
+/* FORM container */
+.form-container{
+  max-width:420px;margin:80px auto;padding:28px;background:var(--card);border-radius:12px;box-shadow:0 8px 30px var(--shadow);text-align:center;
+}
+.form-container input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #e6e6e6;font-size:0.95rem}
+
+/* Profile container */
+.profile-container{max-width:900px;margin:30px auto;padding:20px}
+.profile-header{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 8px 24px var(--shadow);text-align:center;margin-bottom:18px}
+.points-display{font-size:2.4rem;font-weight:700;color:var(--green-700);margin:8px 0}
+
+/* History table */
+.history-section{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 24px var(--shadow)}
+.history-table{width:100%;border-collapse:collapse;margin-top:10px}
+.history-table th, .history-table td{padding:10px;text-align:left;border-bottom:1px solid #f1f1f1}
+.history-table thead th{color:var(--muted);font-weight:600}
+
+/* Cards grid for info */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 20px var(--shadow)}
+.card h3{margin:0 0 6px}
+
+/* Map wrapper */
+.map-wrapper{margin-bottom:20px}
+
+/* Responsive */
+@media(max-width:700px){
+  .nav-right{gap:8px}
+  .points-display{font-size:1.8rem}
+  .form-container{margin:20px}
+  .page-content{padding:0 14px}
+}
