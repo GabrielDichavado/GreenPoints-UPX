@@ -1,4 +1,38 @@
-<script type="module">
-  import { loadNavbar } from "./js/navbar.js";
-  loadNavbar();
-</script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoPontos - Mapa</title>
+
+  <!-- Fonte Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+  <main class="page-content">
+    <section class="map-hero">
+      <h1>Encontre um EcoPonto</h1>
+      <p>Localize os pontos de coleta seletiva mais próximos e veja detalhes.</p>
+    </section>
+
+    <section class="map-wrapper">
+      <div id="map" style="height: 520px; border-radius: 12px; overflow:hidden;"></div>
+    </section>
+  </main>
+
+  <!-- Navbar (injetada automaticamente) -->
+  <script type="module" src="./js/navbar.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- map logic -->
+  <script type="module" src="./js/map.js"></script>
+</body>
+</html>
