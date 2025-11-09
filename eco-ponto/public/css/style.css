@@ -1,89 +1,218 @@
-/* /css/style.css */
-/* Fonte Montserrat via link no HTML */
-:root{
-  --green-600: #007f5f;
-  --green-700: #005f43;
-  --bg: #f6fbf8;
-  --card: #ffffff;
-  --muted: #6b6b6b;
-  --accent: #e9f7ef;
-  --shadow: rgba(0,0,0,0.06);
+/* ---------------- NAVBAR ---------------- */
+
+.navbar {
+  backdrop-filter: blur(8px);
+  background: var(--glass);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:var(--bg);
-  color:#222;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(1200px, 92%);
+  margin: auto;
+  padding: 14px 0;
 }
 
-/* NAVBAR */
-.navbar{
-  width:100%;
-  background: linear-gradient(90deg, rgba(0,127,95,0.95), rgba(0,127,95,0.9));
-  color:white;
-  padding:12px 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  position:sticky;
-  top:0;
-  z-index:999;
+.nav-left {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green-700);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
-.nav-logo{font-weight:700;display:flex;align-items:center;gap:8px;color:white;text-decoration:none}
-.nav-logo span{font-size:1.05rem}
-.nav-right{display:flex;gap:14px;align-items:center}
-.nav-link{color:white;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
-.nav-link:hover{background:rgba(255,255,255,0.08)}
 
-/* Page content wrapper */
-.page-content{max-width:1100px;margin:28px auto;padding:0 20px}
-
-/* HERO sections */
-.map-hero, .info-hero{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 8px 24px var(--shadow);margin-bottom:18px}
-.map-hero h1, .info-hero h1{margin:0 0 8px;font-size:1.6rem}
-.map-hero p, .info-hero p{margin:0;color:var(--muted)}
-
-/* BUTTONS */
-.btn{
-  display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:none;background:var(--green-600);color:white;font-weight:600;cursor:pointer;
+.nav-right {
+  display: flex;
+  gap: 20px;
 }
-.btn:hover{background:var(--green-700)}
-.btn-sec{background:transparent;color:var(--green-700);border:2px solid var(--green-600)}
-.btn-small{padding:6px 8px;border-radius:8px;font-size:0.9rem}
 
-/* FORM container */
-.form-container{
-  max-width:420px;margin:80px auto;padding:28px;background:var(--card);border-radius:12px;box-shadow:0 8px 30px var(--shadow);text-align:center;
+.nav-link {
+  position: relative;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 8px;
+  transition: var(--normal);
 }
-.form-container input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #e6e6e6;font-size:0.95rem}
 
-/* Profile container */
-.profile-container{max-width:900px;margin:30px auto;padding:20px}
-.profile-header{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 8px 24px var(--shadow);text-align:center;margin-bottom:18px}
-.points-display{font-size:2.4rem;font-weight:700;color:var(--green-700);margin:8px 0}
+.nav-link:hover {
+  color: var(--green-700);
+}
 
-/* History table */
-.history-section{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 24px var(--shadow)}
-.history-table{width:100%;border-collapse:collapse;margin-top:10px}
-.history-table th, .history-table td{padding:10px;text-align:left;border-bottom:1px solid #f1f1f1}
-.history-table thead th{color:var(--muted);font-weight:600}
+.nav-link::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  background: var(--green-600);
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  transition: var(--normal);
+}
 
-/* Cards grid for info */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 20px var(--shadow)}
-.card h3{margin:0 0 6px}
+.nav-link:hover::after {
+  width: 100%;
+}
 
-/* Map wrapper */
-.map-wrapper{margin-bottom:20px}
+/* ---------------- HERO ---------------- */
 
-/* Responsive */
-@media(max-width:700px){
-  .nav-right{gap:8px}
-  .points-display{font-size:1.8rem}
-  .form-container{margin:20px}
-  .page-content{padding:0 14px}
+.hero {
+  padding: 80px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+.hero-text h1 {
+  font-size: 2.6rem;
+  margin-bottom: 12px;
+}
+
+.hero-text p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 18px;
+}
+
+.hero-img img {
+  width: 380px;
+}
+
+/* ---------------- HOW IT WORKS ---------------- */
+
+.steps {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.step-card {
+  text-align: center;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.step-card img {
+  width: 60px;
+  margin-bottom: 12px;
+}
+
+/* ---------------- MAP SECTION ---------------- */
+
+.map-preview {
+  margin-top: 60px;
+}
+
+#map-home {
+  width: 100%;
+  height: 400px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* ---------------- INFO PAGE ---------------- */
+
+.info-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.info-card {
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--card);
+}
+
+.info-card img {
+  width: 70px;
+  margin-bottom: 12px;
+}
+
+.curiosidades {
+  margin-top: 40px;
+  padding: 22px;
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+/* ---------------- PROFILE PAGE ---------------- */
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--green-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: white;
+}
+
+.edit-name {
+  margin-top: 8px;
+}
+
+.profile-stats {
+  margin-top: 30px;
+}
+
+.history-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.history-table th {
+  color: var(--text-muted);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 820px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-img img {
+    width: 260px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-right {
+    gap: 10px;
+  }
+
+  .nav-left {
+    font-size: 1rem;
+  }
 }
