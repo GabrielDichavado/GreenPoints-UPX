@@ -1,0 +1,94 @@
+/* ---------- RESET GLOBAL ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- VARIÁVEIS DE COR E ESTILO ---------- */
+:root {
+  /* Paleta principal */
+  --green-700: #007f5f;
+  --green-600: #2b9348;
+  --green-500: #55a630;
+  --green-400: #80b918;
+  --green-300: #aacc00;
+
+  /* Fundo e superfícies */
+  --bg: #f5fbf6;
+  --card: #ffffff;
+  --glass: rgba(255, 255, 255, 0.63);
+
+  /* Tipografia */
+  --text: #1f1f1f;
+  --text-muted: #5a5a5a;
+
+  /* Borda e sombra */
+  --radius: 14px;
+  --shadow: 0 8px 22px rgba(0,0,0,0.08);
+
+  /* Transições */
+  --fast: 0.15s ease;
+  --normal: 0.25s ease;
+}
+
+/* ---------- CLASSES REUTILIZÁVEIS ---------- */
+
+.container {
+  width: min(1200px, 92%);
+  margin: auto;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: var(--green-600);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--normal);
+}
+
+.btn:hover {
+  background: var(--green-700);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--green-600);
+  color: var(--green-700);
+}
+
+.btn-outline:hover {
+  background: var(--green-600);
+  color: white;
+}
+
+/* Títulos */
+h1, h2, h3 {
+  color: var(--green-700);
+  font-weight: 700;
+}
