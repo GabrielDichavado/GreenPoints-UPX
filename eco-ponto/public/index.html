@@ -1,95 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GreenPoints - Recicle. Ganhe. Transforme.</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GreenPoints — Recicle. Ganhe. Transforme.</title>
 
-  <link rel="stylesheet" href="./css/base.css">
+  <!-- CSS principal (já combinado: base + style) -->
   <link rel="stylesheet" href="./css/style.css">
 
+  <!-- Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Leaflet CSS (Mapa) -->
-  <link 
-    rel="stylesheet" 
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   />
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- navbar injetado automaticamente -->
   <script type="module" src="./js/navbar.js"></script>
 
+  <!-- HERO dividido: texto (left) + mapa (right) -->
+  <header class="hero split-hero">
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <h1>Transforme Reciclagem em Recompensas</h1>
+        <p>
+          Entregue material reciclável em EcoPontos, acumule pontos na sua carteira e troque por cashback em estabelecimentos parceiros.
+        </p>
 
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Transforme Reciclagem em Recompensas</h1>
-      <p>Ganhe pontos ao descartar resíduos em EcoPontos da sua região e troque por benefícios exclusivos.</p>
+        <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="register.html" class="btn">Criar conta</a>
+          <a href="map.html" class="btn btn-outline">Ver mapa completo</a>
+        </div>
 
-      <a href="register.html" class="btn hero-btn">Começar Agora</a>
+        <ul style="margin-top:18px; color:var(--gray-700); list-style:disc; margin-left:18px;">
+          <li>Fácil — localize EcoPontos próximos</li>
+          <li>Seguro — seus pontos e histórico na sua conta</li>
+          <li>Sustentável — reduza resíduos e ajude a cidade</li>
+        </ul>
+      </div>
+
+      <div class="hero-right card">
+        <!-- mini-mapa interativo -->
+        <div id="mapIndex" style="width:100%; height:320px; border-radius:10px; overflow:hidden;"></div>
+        <p style="margin-top:12px; color:var(--gray-700); font-size:0.95rem;">
+          Clique nos marcadores para ver o nome do EcoPonto. Na página “Mapa” você encontra uma visão ampliada.
+        </p>
+      </div>
     </div>
   </header>
 
-
-  <!-- ----------------- COMO FUNCIONA ----------------- -->
-  <section class="container" style="margin-top: 50px;">
-
-    <h2 class="section-title">Como Funciona?</h2>
+  <!-- COMO FUNCIONA -->
+  <section class="container" style="margin-top:36px;">
+    <h2 class="section-title">Como funciona</h2>
 
     <div class="home-grid">
-
       <div class="home-card">
-        <i class="ri-map-pin-line home-icon"></i>
-        <h3>1. Encontre um EcoPonto</h3>
-        <p>Localize rapidamente o ponto de coleta mais próximo utilizando nosso mapa interativo.</p>
+        <div class="home-icon">📍</div>
+        <h3>Localize</h3>
+        <p>Encontre o EcoPonto mais próximo usando nosso mapa.</p>
       </div>
 
       <div class="home-card">
-        <i class="ri-recycle-line home-icon"></i>
-        <h3>2. Recicle seus Materiais</h3>
-        <p>Descarte plástico, vidro, papel, metal ou orgânicos da forma correta e contribua com o meio ambiente.</p>
+        <div class="home-icon">♻️</div>
+        <h3>Entregue</h3>
+        <p>Leve seus materiais separados corretamente até o EcoPonto.</p>
       </div>
 
       <div class="home-card">
-        <i class="ri-coin-line home-icon"></i>
-        <h3>3. Ganhe Pontos</h3>
-        <p>Receba pontos automaticamente em sua carteira digital dentro do GreenPoints.</p>
+        <div class="home-icon">🪙</div>
+        <h3>Acumule pontos</h3>
+        <p>Registre sua entrega e acumule pontos na sua conta.</p>
       </div>
 
       <div class="home-card">
-        <i class="ri-gift-line home-icon"></i>
-        <h3>4. Troque por Recompensas</h3>
-        <p>Converta seus pontos em descontos, cashback e benefícios em parceiros locais.</p>
+        <div class="home-icon">🎁</div>
+        <h3>Troque</h3>
+        <p>Converta pontos em descontos ou cashback com parceiros.</p>
       </div>
-
     </div>
-
   </section>
 
+  <!-- BENEFÍCIOS / CURIOSIDADES -->
+  <section class="container" style="margin-top:40px; margin-bottom:60px;">
+    <h2 class="section-title">Por que participar?</h2>
 
-
-  <!-- ----------------- MAPA ----------------- -->
-  <section class="container" style="margin-top: 60px; margin-bottom: 60px;">
-
-    <h2 class="section-title">EcoPontos Próximos</h2>
-
-    <div id="mapIndex" style="
-      width: 100%;
-      height: 450px;
-      border-radius: 15px;
-      margin-top: 20px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    "></div>
-
+    <div class="card" style="padding:18px;">
+      <p style="color:var(--gray-700);">
+        Participar gera benefícios práticos — além do impacto ambiental. Você reduz o volume de resíduos em aterros, incentiva a economia circular e ainda ganha descontos reais.
+      </p>
+    </div>
   </section>
 
-
-
-  <!-- MAPA SCRIPTS -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script type="module" src="./js/index.js"></script>
-
+  <script type="module" src="js/index.js"></script>
+  <script type="module" src="js/navbar.js"></script>
 </body>
 </html>
