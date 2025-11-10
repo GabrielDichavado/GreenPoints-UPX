@@ -1,37 +1,93 @@
-// /js/navbar.js
-// Navbar injetada automaticamente ao importar o módulo.
+import { auth } from "./firebaseConfig.js";
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-export function getNavbarHtml() {
-  return `
-    <nav class="navbar">
-      <div class="nav-inner">
-        <div class="nav-left">
-          <a class="nav-logo" href="index.html">🌱 <span>EcoPontos</span></a>
-        </div>
-        <div class="nav-right">
-          <a class="nav-link" href="index.html">Início</a>
-          <a class="nav-link" href="info.html">Reciclagem</a>
-          <a class="nav-link" href="map.html">Mapa</a>
-          <a class="nav-link user-link" href="profile.html" title="Perfil">👤</a>
-        </div>
-      </div>
-    </nav>
-  `;
-}
 
-// injeta imediatamente quando o arquivo for carregado como módulo
-(function injectNavbar() {
-  try {
-    // evita duplicar caso já exista
-    if (!document.querySelector(".navbar")) {
-      document.body.insertAdjacentHTML("afterbegin", getNavbarHtml());
-    }
-  } catch (err) {
-    // se o DOM ainda não estiver pronto, aguarda carregar
-    window.addEventListener("DOMContentLoaded", () => {
-      if (!document.querySelector(".navbar")) {
-        document.body.insertAdjacentHTML("afterbegin", getNavbarHtml());
-      }
-    });
+// --------- INSERIR NAVBAR NA PÁGINA ---------
+const navbarHTML = `
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">GreenPoints</a>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-item">Início</a>
+      <a href="map.html" class="nav-item">Mapa</a>
+      <a href="info.html" class="nav-item">Informações</a>
+      <a href="profile.html" class="nav-item logged-only">Perfil</a>
+
+      <a href="login.html" class="nav-item logged-out-only">Entrar</a>
+      <a href="register.html" class="nav-item logged-out-only">Cadastrar</a>
+
+      <button class="logout-btn logged-only" id="logoutBtn">Sair</button>
+    </div>
+
+    <div class="nav-avatar" id="navAvatar"></div>
+
+    <button class="nav-toggle" id="menuToggle">
+      ☰
+    </button>
+  </nav>
+`;
+
+document.body.insertAdjacentHTML("afterbegin", navbarHTML);
+
+
+// --------- REFERÊNCIAS ---------
+const navLinks = document.getElementById("navLinks");
+const navAvatar = document.getElementById("navAvatar");
+const logoutBtn = document.getElementById("logoutBtn");
+const menuToggle = document.getElementById("menuToggle");
+
+
+// --------- MENU RESPONSIVO ---------
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+
+
+// --------- DESTAQUE DA PÁGINA ATIVA ---------
+const currentPage = window.location.pathname.split("/").pop();
+
+document.querySelectorAll(".nav-item").forEach(link => {
+  if (link.getAttribute("href") === currentPage) {
+    link.classList.add("active");
   }
-})();
+});
+
+
+// --------- ATUALIZAR NAVBAR PELO LOGIN ---------
+onAuthStateChanged(auth, (user) => {
+
+  if (user) {
+    // Mostrar itens restritos
+    document.querySelectorAll(".logged-only").forEach(e => e.style.display = "inline-block");
+    document.querySelectorAll(".logged-out-only").forEach(e => e.style.display = "none");
+
+    // Avatar com inicial
+    const inicial = user.displayName
+      ? user.displayName.charAt(0).toUpperCase()
+      : "?";
+
+    navAvatar.innerText = inicial;
+    navAvatar.style.display = "flex";
+
+  } else {
+    // Usuário deslogado
+    document.querySelectorAll(".logged-only").forEach(e => e.style.display = "none");
+    document.querySelectorAll(".logged-out-only").forEach(e => e.style.display = "inline-block");
+
+    navAvatar.style.display = "none";
+  }
+});
+
+
+// --------- LOGOUT ---------
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "login.html";
+  });
+}

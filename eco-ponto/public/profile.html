@@ -1,26 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoPontos - Perfil</title>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil - EcoPontos</title>
 
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
 
-  <main class="profile-container">
-    <section class="profile-header">
-      <h1 id="userName">Carregando...</h1>
-      <p>Sua pontuação atual:</p>
-      <div class="points-display">
-        <span id="userPoints">0</span> pontos
+  <!-- NAVBAR automática -->
+  <script type="module" src="./js/navbar.js"></script>
+
+  <main class="container">
+
+    <section class="card" style="margin-top:30px;">
+      <div class="profile-header">
+        <div class="avatar">👤</div>
+
+        <div>
+          <h2 id="profileName">Carregando...</h2>
+
+          <div class="edit-name">
+            <input type="text" id="newName" placeholder="Novo nome..." style="
+              padding: 8px;
+              border-radius: 8px;
+              border: 1px solid #dadada;
+              margin-right: 6px;
+            ">
+            <button id="saveNameBtn" class="btn">Salvar</button>
+          </div>
+        </div>
       </div>
-      <button id="addPointsBtn" class="btn btn-green">Registrar reciclagem</button>
+
+      <div class="profile-stats">
+        <h3>Pontuação Atual</h3>
+        <p style="font-size:2rem; font-weight:700; color:var(--green-700);" id="profilePoints">0</p>
+      </div>
+
     </section>
 
-    <section class="history-section">
+
+
+    <!-- -------- HISTÓRICO -------- -->
+    <section class="card" style="margin-top:20px;">
       <h2>Histórico de Reciclagens</h2>
+
       <table class="history-table">
         <thead>
           <tr>
@@ -29,15 +57,14 @@
           </tr>
         </thead>
         <tbody id="historyBody">
-          <!-- preenchido via JS -->
+          <!-- JS preenche -->
         </tbody>
       </table>
     </section>
+
   </main>
 
-  <!-- Scripts -->
-  <script type="module" src="./js/navbar.js"></script>
-  <script type="module" src="./js/points.js"></script>
-
+  <script type="module" src="js/profile.js"></script>
+  <script type="module" src="js/navbar.js"></script>
 </body>
 </html>

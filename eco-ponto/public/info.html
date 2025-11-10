@@ -1,62 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EcoPontos - Reciclagem</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informações sobre Reciclagem</title>
+
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- Ícones -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
 </head>
 <body>
 
-  <main class="page-content">
-    <section class="info-hero">
-      <h1>Como descartar corretamente</h1>
-      <p>Dicas rápidas e práticas para separar e descartar cada tipo de material.</p>
-    </section>
+  <!-- NAVBAR -->
+  <script type="module" src="./js/navbar.js"></script>
 
-    <section class="cards-grid">
-      <article class="card">
+
+  <main class="container" style="margin-top: 25px;">
+
+    <h1 style="margin-bottom: 25px;">Descarte Correto & Curiosidades</h1>
+
+
+    <!-- ------------------ TIPO DE RESÍDUO ------------------ -->
+    <section class="info-grid">
+
+      <div class="info-card">
+        <i class="ri-recycle-line info-icon"></i>
         <h3>Plástico</h3>
-        <p>Limpar embalagens, esvaziar, e achatar quando possível. Não misturar com orgânicos.</p>
-        <ul>
-          <li>O que vai: garrafas PET, potes plásticos limpos.</li>
-          <li>O que não vai: sacolas sujas, embalagens com restos.</li>
-        </ul>
-      </article>
+        <p>Devem ser lavados para remover resíduos e colocados no lixo reciclável. Garrafas PET, embalagens e tampas são totalmente recicláveis.</p>
+      </div>
 
-      <article class="card">
+      <div class="info-card">
+        <i class="ri-glass-line info-icon"></i>
         <h3>Vidro</h3>
-        <p>Separe por cor quando solicitado, não descartar lâmpadas no EcoPonto comum.</p>
-        <ul>
-          <li>O que vai: garrafas, frascos sem tampa.</li>
-          <li>O que não vai: vidros quebrados sem proteção, lâmpadas.</li>
-        </ul>
-      </article>
+        <p>Vidros inteiros ou quebrados devem estar bem embalados. Não são recicláveis: espelhos, lâmpadas e cristais.</p>
+      </div>
 
-      <article class="card">
-        <h3>Papel e Papelão</h3>
-        <p>Aplainar caixas, retirar resíduos alimentares e não misturar com papel engordurado.</p>
-        <ul>
-          <li>O que vai: jornais, papel limpo, caixas desmontadas.</li>
-          <li>O que não vai: papel sujo de comida.</li>
-        </ul>
-      </article>
+      <div class="info-card">
+        <i class="ri-shopping-bag-3-line info-icon"></i>
+        <h3>Papel</h3>
+        <p>Papel limpo e seco deve ir para reciclagem. Papéis engordurados, papel higiênico e guardanapo usados NÃO reciclam.</p>
+      </div>
 
-      <article class="card">
-        <h3>Metais</h3>
-        <p>Latas e objetos metálicos limpos. Amasse latas para economizar espaço.</p>
-      </article>
+      <div class="info-card">
+        <i class="ri-battery-2-charge-line info-icon"></i>
+        <h3>Metal</h3>
+        <p>Latinhas, tampas, panelas e arames são recicláveis. Embalagens pressurizadas precisam ser descartadas em locais apropriados.</p>
+      </div>
 
-      <article class="card">
-        <h3>Orgânico</h3>
-        <p>Se possível, destinar à compostagem — não deve ir para os EcoPontos convencionais.</p>
-      </article>
+      <div class="info-card">
+        <i class="ri-plant-line info-icon"></i>
+        <h3>Orgânicos</h3>
+        <p>Restos de comida podem ser destinados a composteiras, reduzindo drasticamente o volume de lixo enviado a aterros.</p>
+      </div>
+
+      <div class="info-card">
+        <i class="ri-delete-bin-7-line info-icon"></i>
+        <h3>Resíduos Perigosos</h3>
+        <p>Pilhas, baterias, eletroeletrônicos, medicamentos e óleo de cozinha devem ser descartados em pontos específicos.</p>
+      </div>
+
     </section>
+
+
+
+    <!-- ------------------ CURIOSIDADES ------------------ -->
+    <h2 style="margin-top: 40px; margin-bottom: 20px;">Curiosidades</h2>
+
+    <section class="curiosity-grid">
+
+      <div class="curiosity-card">
+        <i class="ri-earth-line curiosity-icon"></i>
+        <p>Um único litro de óleo pode contaminar até 25 mil litros de água.</p>
+      </div>
+
+      <div class="curiosity-card">
+        <i class="ri-time-line curiosity-icon"></i>
+        <p>O plástico pode levar até 400 anos para se decompor na natureza.</p>
+      </div>
+
+      <div class="curiosity-card">
+        <i class="ri-map-pin-line curiosity-icon"></i>
+        <p>O Brasil recicla apenas cerca de 4% de seu lixo total — muito abaixo do potencial nacional.</p>
+      </div>
+
+      <div class="curiosity-card">
+        <i class="ri-leaf-line curiosity-icon"></i>
+        <p>Reciclar 1 tonelada de papel evita o corte de aproximadamente 20 árvores adultas.</p>
+      </div>
+
+    </section>
+
   </main>
 
-  <script type="module" src="./js/navbar.js"></script>
-  <script type="module" src="./js/info.js"></script>
 </body>
 </html>

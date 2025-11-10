@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>EcoPontos - Login</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar - GreenPoints</title>
+
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="form-container">
-    <h2>Entrar</h2>
-    <form id="loginForm">
-      <input type="email" id="emailLogin" placeholder="E-mail" required>
-      <input type="password" id="senhaLogin" placeholder="Senha" required>
-      <button type="submit">Entrar</button>
-    </form>
-    <p>Ainda não tem conta? <a href="register.html">Cadastre-se</a></p>
-  </div>
 
-  <script type="module" src="js/auth.js"></script>
+  <!-- NAVBAR -->
+  <script type="module" src="./js/navbar.js"></script>
+
+  <main class="login-container">
+
+    <div class="login-box">
+
+      <h1>Entrar</h1>
+      <p class="subtitle">Acesse sua conta e continue reciclando!</p>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="emailLogin" placeholder="seuemail@gmail.com">
+      </div>
+
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="senhaLogin" placeholder="********">
+      </div>
+
+      <button id="loginBtn" class="btn full">Entrar</button>
+
+      <p class="switch-text">
+        Não tem conta?
+        <a href="register.html">Cadastrar</a>
+      </p>
+
+      <p id="loginError" class="error-text"></p>
+
+    </div>
+
+  </main>
+
+  <script type="module" src="./js/login.js"></script>
+
 </body>
 </html>

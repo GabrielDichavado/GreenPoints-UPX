@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>EcoPontos - Cadastro</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar - GreenPoints</title>
+
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="form-container">
-    <h2>Criar Conta</h2>
-    <form id="registerForm">
-      <input type="text" id="nome" placeholder="Nome completo" required>
-      <input type="email" id="emailCadastro" placeholder="E-mail" required>
-      <input type="password" id="senhaCadastro" placeholder="Senha" required>
-      <button type="submit">Cadastrar</button>
-    </form>
-    <p>Já tem conta? <a href="login.html">Entrar</a></p>
-  </div>
 
-  <script type="module" src="js/auth.js"></script>
+  <!-- NAVBAR -->
+  <script type="module" src="./js/navbar.js"></script>
+
+  <main class="login-container">
+
+    <div class="login-box">
+
+      <h1>Criar Conta</h1>
+      <p class="subtitle">Comece sua jornada sustentável!</p>
+
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input type="text" id="nomeCadastro" placeholder="Seu nome">
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="emailCadastro" placeholder="seuemail@gmail.com">
+      </div>
+
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="senhaCadastro" placeholder="********">
+      </div>
+
+      <button id="registerBtn" class="btn full">Cadastrar</button>
+
+      <p class="switch-text">
+        Já tem conta?
+        <a href="login.html">Entrar</a>
+      </p>
+
+      <p id="registerError" class="error-text"></p>
+
+    </div>
+
+  </main>
+
+  <script type="module" src="./js/register.js"></script>
+
 </body>
 </html>
