@@ -1,17 +1,17 @@
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBDNpJSCrRfhtYdBH-k7qZzmphsmbxtWCs",
-  authDomain: "green-points-upx.firebaseapp.com",
-  projectId: "green-points-upx",
-  storageBucket: "green-points-upx.firebasestorage.app",
-  messagingSenderId: "1029100815200",
-  appId: "1:1029100815200:web:d5713b4b41141de12e1405"
+    apiKey: "Censurado",
+    authDomain: "green-points-upx.firebaseapp.com",
+    projectId: "green-points-upx",
+    storageBucket: "green-points-upx.firebasestorage.app",
+    messagingSenderId: "1029100815200",
+    appId: "1:1029100815200:web:d5713b4b41141de12e1405"
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
