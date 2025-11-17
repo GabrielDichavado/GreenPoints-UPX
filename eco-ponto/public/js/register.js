@@ -1,57 +1,68 @@
+// =====================================================
+// Registro de Usuário (User ou Admin)
+// =====================================================
+
 import { auth, db } from "./firebaseConfig.js";
 
 import {
-  createUserWithEmailAndPassword,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
 import {
   doc,
   setDoc
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
+// Pegando o formulário
+const form = document.getElementById("registerForm");
 
-// ELEMENTOS
-const nomeInput = document.getElementById("nomeCadastro");
-const emailInput = document.getElementById("emailCadastro");
-const senhaInput = document.getElementById("senhaCadastro");
-const registerBtn = document.getElementById("registerBtn");
-const errorBox = document.getElementById("registerError");
+// Listener do envio
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-registerBtn.addEventListener("click", async () => {
-  const nome = nomeInput.value.trim();
-  const email = emailInput.value.trim();
-  const senha = senhaInput.value.trim();
+  // Pegando valores dos inputs
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const password = form.password.value.trim();
 
-  const role = document.querySelector("input[name='role']:checked").value;
+  // Verificar role selecionada
+  const roleRadio = document.querySelector("input[name='role']:checked");
 
-  errorBox.innerText = "";
-
-  if (!nome || !email || !senha) {
-    errorBox.innerText = "Preencha todos os campos.";
+  if (!roleRadio) {
+    alert("Por favor, selecione o tipo de usuário (Admin ou Usuário).");
     return;
   }
 
+  const role = roleRadio.value; // "admin" ou "user"
+
   try {
-    const cred = await createUserWithEmailAndPassword(auth, email, senha);
+    // Criando usuário no Auth
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    const uid = cred.user.uid;
 
-    await updateProfile(cred.user, {
-      displayName: nome
-    });
-
-    // SALVAR TIPO DE USUÁRIO NO FIRESTORE
-    await setDoc(doc(db, "usuarios", cred.user.uid), {
-      nome: nome,
+    // Criando documento no Firestore
+    await setDoc(doc(db, "users", uid), {
+      name: name,
       email: email,
-      pontos: 0,
-      role: role,   // ← AQUI ESTÁ O OURO
-      criadoEm: Date.now()
+      role: role,
+      points: 0,
+      history: []
     });
 
-    window.location.href = "index.html";
+    // Guardar role no navegador
+    localStorage.setItem("userRole", role);
 
-  } catch (err) {
-    console.log(err);
-    errorBox.innerText = "Erro ao cadastrar. Verifique os dados.";
+    alert("Cadastro realizado com sucesso!");
+
+    // Redirecionar
+    if (role === "admin") {
+      window.location.href = "admin.html";
+    } else {
+      window.location.href = "index.html";
+    }
+
+  } catch (error) {
+    console.error("Erro ao cadastrar: ", error);
+    alert("Erro ao cadastrar. Verifique seus dados.");
   }
 });
