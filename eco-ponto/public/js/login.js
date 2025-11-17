@@ -1,41 +1,66 @@
-import { auth } from "./firebaseConfig.js";
+// =====================================================
+// LOGIN DE USUÁRIO (User e Admin)
+// =====================================================
+
+import { auth, db } from "./firebaseConfig.js";
+
 import {
   signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-const emailInput = document.getElementById("emailLogin");
-const senhaInput = document.getElementById("senhaLogin");
-const loginBtn = document.getElementById("loginBtn");
-const errorBox = document.getElementById("loginError");
+import {
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-// Clique no botão
-loginBtn.addEventListener("click", async () => {
-  const email = emailInput.value.trim();
-  const senha = senhaInput.value.trim();
+// Pegando formulário
+const form = document.getElementById("loginForm");
 
-  errorBox.innerText = "";
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  if (!email || !senha) {
-    errorBox.innerText = "Preencha todos os campos.";
-    return;
-  }
+  const email = form.email.value.trim();
+  const password = form.password.value.trim();
 
   try {
-    await signInWithEmailAndPassword(auth, email, senha);
+    // Login no Firebase Auth
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    const uid = cred.user.uid;
 
-    window.location.href = "index.html";
+    // Pega informações do Firestore
+    const userRef = doc(db, "users", uid);
+    const userSnap = await getDoc(userRef);
 
-  } catch (err) {
-    console.log(err);
+    if (!userSnap.exists()) {
+      alert("Erro: Usuário sem registro no banco de dados.");
+      return;
+    }
 
-    if (err.code === "auth/invalid-email") {
-      errorBox.innerText = "Email inválido.";
-    } else if (err.code === "auth/wrong-password") {
-      errorBox.innerText = "Senha incorreta.";
-    } else if (err.code === "auth/user-not-found") {
-      errorBox.innerText = "Usuário não encontrado.";
+    const data = userSnap.data();
+    const role = data.role;
+
+    // Salva no localStorage (navbar, bloqueios etc)
+    localStorage.setItem("userRole", role);
+    localStorage.setItem("userName", data.name);
+    localStorage.setItem("userEmail", data.email);
+    localStorage.setItem("uid", uid);
+
+    alert("Login realizado com sucesso!");
+
+    // Redirecionamento baseado na role
+    if (role === "admin") {
+      window.location.href = "admin.html";
     } else {
-      errorBox.innerText = "Erro ao entrar. Tente novamente.";
+      window.location.href = "index.html";
+    }
+
+  } catch (error) {
+    console.error("Erro ao fazer login:", error);
+    
+    if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
+      alert("E-mail ou senha incorretos.");
+    } else {
+      alert("Erro ao fazer login. Tente novamente.");
     }
   }
 });
