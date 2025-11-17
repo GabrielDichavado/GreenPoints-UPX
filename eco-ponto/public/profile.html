@@ -1,70 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meu Perfil - EcoPontos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Green Points</title>
 
-  <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Fonte Montserrat -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
 </head>
+
 <body>
 
-  <!-- NAVBAR automática -->
-  <script type="module" src="./js/navbar.js"></script>
+<!-- NAVBAR -->
+<div id="navbar"></div>
 
-  <main class="container">
+<main class="container">
 
-    <section class="card" style="margin-top:30px;">
-      <div class="profile-header">
-        <div class="avatar">👤</div>
+    <h1 class="section-title">Meu Perfil</h1>
 
-        <div>
-          <h2 id="profileName">Carregando...</h2>
+    <section class="profile-card">
 
-          <div class="edit-name">
-            <input type="text" id="newName" placeholder="Novo nome..." style="
-              padding: 8px;
-              border-radius: 8px;
-              border: 1px solid #dadada;
-              margin-right: 6px;
-            ">
-            <button id="saveNameBtn" class="btn">Salvar</button>
-          </div>
+        <!-- Informações do Usuário -->
+        <div class="profile-info">
+
+            <h2 id="profileName">Carregando...</h2>
+            <p id="profileEmail"></p>
+
+            <div class="points-box">
+                <span id="profilePoints">0</span>
+                <small>Pontos acumulados</small>
+            </div>
+
+            <button id="editNameBtn" class="btn-primary small-btn">Alterar nome</button>
         </div>
-      </div>
-
-      <div class="profile-stats">
-        <h3>Pontuação Atual</h3>
-        <p style="font-size:2rem; font-weight:700; color:var(--green-700);" id="profilePoints">0</p>
-      </div>
-
     </section>
 
-
-
-    <!-- -------- HISTÓRICO -------- -->
-    <section class="card" style="margin-top:20px;">
-      <h2>Histórico de Reciclagens</h2>
-
-      <table class="history-table">
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Pontos</th>
-          </tr>
-        </thead>
-        <tbody id="historyBody">
-          <!-- JS preenche -->
-        </tbody>
-      </table>
+    <!-- Histórico -->
+    <section class="history-section">
+        <h2>Histórico de Atividades</h2>
+        <ul id="historyList" class="history-list"></ul>
     </section>
 
-  </main>
+</main>
 
-  <script type="module" src="js/profile.js"></script>
-  <script type="module" src="js/navbar.js"></script>
+<script type="module">
+    import { protectPage } from "./js/authGuard.js";
+    import { loadNavbar } from "./js/navbar.js";
+    import { db } from "./js/firebaseConfig.js";
+
+    import {
+        doc,
+        getDoc,
+        updateDoc
+    } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+    // Proteger página → apenas usuário logado
+    protectPage();
+
+    // Carregar navbar
+    loadNavbar();
+
+    // Elementos
+    const nameEl = document.getElementById("profileName");
+    const emailEl = document.getElementById("profileEmail");
+    const pointsEl = document.getElementById("profilePoints");
+    const historyList = document.getElementById("historyList");
+    const editBtn = document.getElementById("editNameBtn");
+
+    // UID do usuário
+    const uid = localStorage.getItem("uid");
+
+    // Carregar perfil do Firestore
+    async function loadProfile() {
+        const userRef = doc(db, "users", uid);
+        const snap = await getDoc(userRef);
+
+        if (!snap.exists()) {
+            nameEl.innerHTML = "Erro ao carregar perfil.";
+            return;
+        }
+
+        const data = snap.data();
+
+        nameEl.innerHTML = data.name;
+        emailEl.innerHTML = data.email;
+        pointsEl.innerHTML = data.points ?? 0;
+
+        historyList.innerHTML = "";
+
+        if (data.history && data.history.length > 0) {
+            data.history
+                .slice()
+                .reverse()
+                .forEach(item => {
+                    historyList.innerHTML += `<li>${item}</li>`;
+                });
+        } else {
+            historyList.innerHTML = "<li>Nenhum histórico ainda.</li>";
+        }
+    }
+
+    loadProfile();
+
+    // ALTERAR NOME DO USUÁRIO
+    editBtn.addEventListener("click", async () => {
+        const novoNome = prompt("Digite o novo nome:");
+
+        if (!novoNome || novoNome.trim() === "") return;
+
+        const userRef = doc(db, "users", uid);
+
+        await updateDoc(userRef, {
+            name: novoNome.trim()
+        });
+
+        localStorage.setItem("userName", novoNome.trim());
+
+        loadProfile();
+        alert("Nome atualizado com sucesso!");
+    });
+</script>
+
 </body>
 </html>
