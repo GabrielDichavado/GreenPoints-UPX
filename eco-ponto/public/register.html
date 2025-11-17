@@ -1,70 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastrar - GreenPoints</title>
-
-  <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/style.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Green Points</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  <script type="module" src="./js/navbar.js"></script>
+<!-- NAVBAR -->
+<div id="navbar"></div>
 
-  <main class="login-container">
+<main class="container register-area">
+    <h1>Criar Conta</h1>
 
-    <div class="login-box">
+    <form id="registerForm">
 
-      <h1>Criar Conta</h1>
-      <p class="subtitle">Selecione seu tipo de acesso e comece agora.</p>
+        <label for="name">Nome completo:</label>
+        <input type="text" id="name" required>
 
-      <div class="form-group">
-        <label>Nome completo</label>
-        <input type="text" id="nomeCadastro" placeholder="Seu nome">
-      </div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" required>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="emailCadastro" placeholder="seuemail@gmail.com">
-      </div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" minlength="6" required>
 
-      <div class="form-group">
-        <label>Senha</label>
-        <input type="password" id="senhaCadastro" placeholder="********">
-      </div>
-
-      <div class="form-group">
-        <label>Tipo de conta</label>
-        <div class="role-options">
-          <label class="role-item">
-            <input type="radio" name="role" value="user" checked>
-            Usuário
-          </label>
-
-          <label class="role-item">
-            <input type="radio" name="role" value="admin">
-            Administrador
-          </label>
+        <label>Tipo de conta:</label>
+        <div class="checkbox-group">
+            <label>
+                <input type="radio" name="role" value="user" checked>
+                Usuário
+            </label>
+            <label>
+                <input type="radio" name="role" value="admin">
+                Administrador
+            </label>
         </div>
-      </div>
 
-      <button id="registerBtn" class="btn full">Cadastrar</button>
+        <button type="submit" class="btn-primary">Cadastrar</button>
+    </form>
 
-      <p class="switch-text">
-        Já possui conta?
-        <a href="login.html">Entrar</a>
-      </p>
+    <p>Já possui conta? <a href="login.html">Entrar</a></p>
+</main>
 
-      <p id="registerError" class="error-text"></p>
+<script type="module">
+    import { loadNavbar } from "./js/navbar.js";
+    import "./js/register.js";
 
-    </div>
+    loadNavbar();
 
-  </main>
-
-  <script type="module" src="./js/register.js"></script>
+    // Redireciona usuário logado
+    if (localStorage.getItem("uid")) {
+        window.location.href = "index.html";
+    }
+</script>
 
 </body>
 </html>
