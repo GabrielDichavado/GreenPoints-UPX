@@ -1,51 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entrar - GreenPoints</title>
-
-  <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/style.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Green Points</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <script type="module" src="./js/navbar.js"></script>
+<div id="navbar"></div>
 
-  <main class="login-container">
+<main class="container login-area">
+    <h1>Entrar</h1>
 
-    <div class="login-box">
+    <form id="loginForm">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" required>
 
-      <h1>Entrar</h1>
-      <p class="subtitle">Acesse sua conta e continue reciclando!</p>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" required>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="emailLogin" placeholder="seuemail@gmail.com">
-      </div>
+        <button type="submit" class="btn-primary">Entrar</button>
+    </form>
 
-      <div class="form-group">
-        <label>Senha</label>
-        <input type="password" id="senhaLogin" placeholder="********">
-      </div>
+    <p>Não tem conta? <a href="register.html">Cadastrar</a></p>
+</main>
 
-      <button id="loginBtn" class="btn full">Entrar</button>
+<script type="module">
+    import { loadNavbar } from "./js/navbar.js";
+    import "./js/login.js";
 
-      <p class="switch-text">
-        Não tem conta?
-        <a href="register.html">Cadastrar</a>
-      </p>
-
-      <p id="loginError" class="error-text"></p>
-
-    </div>
-
-  </main>
-
-  <script type="module" src="./js/login.js"></script>
+    loadNavbar();
+</script>
 
 </body>
 </html>
