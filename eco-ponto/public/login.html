@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Green Points</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrar - GreenPoints</title>
+
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div id="navbar"></div>
+  <!-- NAVBAR -->
+  <script type="module" src="./js/navbar.js"></script>
 
-<main class="container login-area">
-    <h1>Entrar</h1>
+  <main class="login-container">
 
-    <form id="loginForm">
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" required>
+    <div class="login-box">
 
-        <label for="password">Senha:</label>
-        <input type="password" id="password" required>
+      <h1>Entrar</h1>
+      <p class="subtitle">Acesse sua conta e continue reciclando!</p>
 
-        <button type="submit" class="btn-primary">Entrar</button>
-    </form>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="emailLogin" placeholder="seuemail@gmail.com">
+      </div>
 
-    <p>Não tem conta? <a href="register.html">Cadastrar</a></p>
-</main>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="senhaLogin" placeholder="********">
+      </div>
 
-<script type="module">
-    import { loadNavbar } from "./js/navbar.js";
-    import "./js/login.js";
+      <button id="loginBtn" class="btn full">Entrar</button>
 
-    loadNavbar();
-</script>
+      <p class="switch-text">
+        Não tem conta?
+        <a href="register.html">Cadastrar</a>
+      </p>
+
+      <p id="loginError" class="error-text"></p>
+
+    </div>
+
+  </main>
+
+  <script type="module" src="./js/login.js"></script>
 
 </body>
 </html>

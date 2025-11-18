@@ -1,108 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Points - Incentivo à Reciclagem</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GreenPoints — Recicle. Ganhe. Transforme.</title>
 
-    <!-- Leaflet CSS para o mapa -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <!-- CSS principal (já combinado: base + style) -->
+  <link rel="stylesheet" href="./css/style.css">
 
-    <!-- Fonte Montserrat -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<div id="navbar"></div>
+  <!-- navbar injetado automaticamente -->
+  <script type="module" src="./js/navbar.js"></script>
 
-<!-- HERO SECTION -->
-<header class="hero">
-    <div class="hero-content">
-        <h1>Green Points</h1>
-        <p>Transforme sua reciclagem em benefícios reais. Faça parte da mudança.</p>
+  <!-- HERO dividido: texto (left) + mapa (right) -->
+  <header class="hero split-hero">
+    <div class="container hero-inner">
+      <div class="hero-left">
+        <h1>Transforme Reciclagem em Recompensas</h1>
+        <p>
+          Entregue material reciclável em EcoPontos, acumule pontos na sua carteira e troque por cashback em estabelecimentos parceiros.
+        </p>
 
-        <a href="info.html" class="btn-primary">Saiba Mais</a>
-    </div>
-</header>
-
-<main class="container">
-
-    <!-- MAPA -->
-    <h2 class="section-title">Ecopontos próximos</h2>
-    <div id="map" class="map"></div>
-
-    <!-- SESSÃO SOBRE O PROJETO -->
-    <section class="about-section">
-        <h2 class="section-title">Como funciona</h2>
-
-        <div class="card-grid">
-
-            <div class="card">
-                <h3>1. Recicle</h3>
-                <p>
-                    Separe corretamente seus resíduos recicláveis e leve-os ao Ecoponto mais próximo.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>2. Cadastre-se</h3>
-                <p>
-                    Crie sua conta no Green Points para registrar suas entregas e acompanhar seu progresso.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>3. Ganhe Pontos</h3>
-                <p>
-                    A cada entrega de materiais recicláveis, você acumula pontos em sua conta.
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>4. Troque por Benefícios</h3>
-                <p>
-                    Utilize seus pontos para resgatar cashback e vantagens em estabelecimentos parceiros.
-                </p>
-            </div>
-
+        <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="register.html" class="btn">Criar conta</a>
+          <a href="map.html" class="btn btn-outline">Ver mapa completo</a>
         </div>
-    </section>
 
-</main>
+        <ul style="margin-top:18px; color:var(--gray-700); list-style:disc; margin-left:18px;">
+          <li>Fácil — localize EcoPontos próximos</li>
+          <li>Seguro — seus pontos e histórico na sua conta</li>
+          <li>Sustentável — reduza resíduos e ajude a cidade</li>
+        </ul>
+      </div>
 
-<!-- Leaflet JS para o mapa -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <div class="hero-right card">
+        <!-- mini-mapa interativo -->
+        <div id="mapIndex" style="width:100%; height:320px; border-radius:10px; overflow:hidden;"></div>
+        <p style="margin-top:12px; color:var(--gray-700); font-size:0.95rem;">
+          Clique nos marcadores para ver o nome do EcoPonto. Na página “Mapa” você encontra uma visão ampliada.
+        </p>
+      </div>
+    </div>
+  </header>
 
-<script type="module">
-    import { loadNavbar } from "./js/navbar.js";
-    loadNavbar();
+  <!-- COMO FUNCIONA -->
+  <section class="container" style="margin-top:36px;">
+    <h2 class="section-title">Como funciona</h2>
 
-    // MAPA =====================================================
-    const map = L.map('map').setView([-23.55, -46.63], 12);
+    <div class="home-grid">
+      <div class="home-card">
+        <div class="home-icon">📍</div>
+        <h3>Localize</h3>
+        <p>Encontre o EcoPonto mais próximo usando nosso mapa.</p>
+      </div>
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-    }).addTo(map);
+      <div class="home-card">
+        <div class="home-icon">♻️</div>
+        <h3>Entregue</h3>
+        <p>Leve seus materiais separados corretamente até o EcoPonto.</p>
+      </div>
 
-    // SIMULAÇÃO DE ECOPONTOS
-    const ecoPontos = [
-        { name: "EcoPonto Central", coords: [-23.5505, -46.6333] },
-        { name: "EcoPonto Sul", coords: [-23.5702, -46.6401] },
-        { name: "EcoPonto Norte", coords: [-23.5202, -46.6201] },
-        { name: "EcoPonto Leste", coords: [-23.5522, -46.5801] },
-        { name: "EcoPonto Oeste", coords: [-23.5552, -46.6701] }
-    ];
+      <div class="home-card">
+        <div class="home-icon">🪙</div>
+        <h3>Acumule pontos</h3>
+        <p>Registre sua entrega e acumule pontos na sua conta.</p>
+      </div>
 
-    ecoPontos.forEach(ponto => {
-        L.marker(ponto.coords).addTo(map).bindPopup(`<b>${ponto.name}</b>`);
-    });
-</script>
+      <div class="home-card">
+        <div class="home-icon">🎁</div>
+        <h3>Troque</h3>
+        <p>Converta pontos em descontos ou cashback com parceiros.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- BENEFÍCIOS / CURIOSIDADES -->
+  <section class="container" style="margin-top:40px; margin-bottom:60px;">
+    <h2 class="section-title">Por que participar?</h2>
+
+    <div class="card" style="padding:18px;">
+      <p style="color:var(--gray-700);">
+        Participar gera benefícios práticos — além do impacto ambiental. Você reduz o volume de resíduos em aterros, incentiva a economia circular e ainda ganha descontos reais.
+      </p>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="js/index.js"></script>
+  <script type="module" src="js/navbar.js"></script>
 </body>
 </html>
